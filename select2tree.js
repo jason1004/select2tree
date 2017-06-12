@@ -4,13 +4,15 @@
 			language: "zh-CN",
 			theme: "bootstrap"
 		};
-		var opts = $.extend(defaults, options);
-		opts.templateResult = function(data, container) {
+        var opts = $.extend(defaults, options);
+	    debugger;
+        opts.templateResult = function (data, container) {
+            debugger;
 			if(data.element) {
 				//insert span element and add 'parent' property
-				var $wrapper = $("<span></span><span>" + data.text + "</span>");
+                var $wrapper = $("<span class='checkbox' style='margin-left:5px;'> <label><input type='checkbox' ></input>" + data.text  +" </label>  </span>");
 				var $element = $(data.element);
-				$(container).attr("val", $element.val())
+			    $(container).attr("val", $element.val());
 				if($element.attr("parent")) {
 					$(container).attr("parent", $element.attr("parent"));
 				}
@@ -83,7 +85,8 @@
 			});
 
 			//override mousedown for collapse/expand 
-			$(".switch").mousedown(function() {
+			//$(".switch").mousedown(function() {
+			$(".switch").click(function() {
 				switchAction($(this).parent().attr("val"), $(this).hasClass("glyphicon-chevron-right"));
 				event.stopPropagation();
 			});
